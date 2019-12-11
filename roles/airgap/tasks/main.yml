@@ -36,8 +36,6 @@
               - containerPort: 27017
                 protocol: TCP
               env:
-              - name: RELATED_IMAGE_DB
-                value: "registry.access.redhat.com/rhscl/mongodb-36-rhel7:latest"
               - name: MONGODB_USER
                 value: "{{ mongodb_user }}"
               - name: MONGODB_PASSWORD

@@ -44,6 +44,8 @@ spec:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: "airgap-operator"
+            - name: RELATED_IMAGE_DB
+              value: "registry.access.redhat.com/rhscl/mongodb-36-rhel7:latest"
       volumes:
         - name: runner
           emptyDir: {}
