@@ -5,17 +5,19 @@ This is an example of a mongoDB k8s operator that
  1) uses Ansible
  2) passes an environment variable as the image used by the deployment
  
-# What to look for
+## Update your Ansible operator
 
-In the tasks/main.yaml, all images use
+Make sure your role is using enviroment variables for images instead of hard-coded or regular variables.
 
             containers:
             - name: mongodb
               image: "{{ lookup('env','RELATED_IMAGE_DB') | quote }}"
-          
-to reference images.
 
-These environment variables are then defined and set to a default value in the operator.yaml:
+NOTE: Your environment variables need to follow the RELATED_IMAGE_<identifier> format, as there is code looking for this pattern.
+
+Build your updated operator image.
+
+Define the environment variables in the operator container. In the CSV and operator.yaml, declare the variable and set to a default value.
 
           env:
             - name: RELATED_IMAGE_DB
