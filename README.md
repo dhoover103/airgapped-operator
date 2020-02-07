@@ -7,7 +7,13 @@ This is an example of a mongoDB k8s operator that
  
 ## Update your Ansible operator
 
-Make sure your role is using enviroment variables for images instead of hard-coded or regular variables.
+Make sure your role is using enviroment variables for images instead of hard-coded or regular variables. If it's not, update it:
+
+    containers:
+    - name: mongodb
+      image: "{{ 'dbImage' | quote }}"
+
+Above you can see a reference to a image that's likely defined in either the CR or the role's defaults/main.yaml file. Instead, use Ansible's lookup module to reference an environment variable:
 
             containers:
             - name: mongodb
